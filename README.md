@@ -11,9 +11,6 @@ In the project directory, you can run:
 This runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
 ### Latest Update:
 10-31-2022
 Added ability to move Start/Finish markers
