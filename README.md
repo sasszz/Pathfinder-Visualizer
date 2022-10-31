@@ -13,7 +13,12 @@ Open http://localhost:3000 to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### Current Form:
-10-30-2022
+### Latest Update:
+10-31-2022
+Added ability to move Start/Finish markers
+<img src="/README-imgs/StartFinish_Demo.gif" alt="Demo">
 
-<img src="/README-imgs/10-30-update.png" alt="Home Page">
+### Past Updates:
+10-30-2022
+<img src="/README-imgs/10-30-update.png" alt="Demo from 10-30">
+

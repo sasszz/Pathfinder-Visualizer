@@ -2,8 +2,44 @@ import React, { useEffect, useState, Component } from 'react'
 import Node from '../Node/Node';
 import Header from '../Header/Header';
 
+
+  // CHANGE START
+  document.onmouseover = function(e) {
+    // console.log(e.target.id);
+}
+
+  document.onmousedown = (e) => {
+    e.preventDefault();
+    if (e.target.className === "node node-start") {
+      e.target.className = "node"
+      console.log("start");
+      document.onmouseup = (e) => {
+        e.target.className = "node node-start"
+        let id = e.target.id
+        let coordinates = id.split("-");
+        let r = parseInt(coordinates[0]);
+        let c = parseInt(coordinates[1]);
+        console.log(r, c)
+        return r, c;
+      }
+    }
+    if (e.target.className === "node node-finish") {
+      e.target.className = "node"
+      console.log("finish");
+      document.onmouseup = (e) => {
+        e.target.className = "node node-finish"
+        let id = e.target.id
+        let coordinates = id.split("-");
+        let r = parseInt(coordinates[0]);
+        let c = parseInt(coordinates[1]);
+        console.log(r, c)
+        return r, c;
+      }
+    }
+  }
+
 const START_NODE_ROW = 10;
-const START_NODE_COL = 15;
+const START_NODE_COL = 10;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 35;
 
@@ -34,7 +70,7 @@ export default class Board extends Component {
               <div key={rowIdx} className="inline-flex">
                 {row.map((node, nodeIdx) => {
                   const { row, col, isFinish, isStart } = node;
-                  console.log(isFinish)
+                  console.log(isStart)
                   return (
                     <Node
                       key={nodeIdx}
@@ -64,7 +100,7 @@ const getInitialGrid = () => {
     }
     grid1.push(currentRow);
   }
-  console.log(grid1)
+  // console.log(grid1)
   return grid1;
 }
 
