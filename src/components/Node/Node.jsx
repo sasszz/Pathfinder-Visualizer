@@ -1,18 +1,27 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Node.css';
 
 
-const Node = ({row, col}) => {
-  // const {
-  //   col,
-  //   row,
-  // } = this.props;
+export default class Node extends Component {
+  render() {
+    const {
+      col,
+      row,
+      isFinish,
+      isStart,
+    } = this.props;
 
-  return (
-    <div className="node"
-      id={`node-${row}-${col}`}
-    ></div>
-  )
+    const color =
+      isFinish ? 'node-finish' :
+      isStart ? 'node-start' :
+      '';
+
+
+    return (
+      <div
+        className={`node ${color}`}
+        id={`${row}-${col}`}
+      ></div>
+    )
+  }
 }
-
-export default Node

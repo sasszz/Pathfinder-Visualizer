@@ -1,39 +1,57 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState, Component } from 'react'
 import Node from '../Node/Node';
 import Header from '../Header/Header';
 
-const Board = () => {
-  const [grid, setGrid] = useState([]);
+const START_NODE_ROW = 10;
+const START_NODE_COL = 15;
+const FINISH_NODE_ROW = 10;
+const FINISH_NODE_COL = 35;
 
-  useEffect(() => {
-    setGrid(getInitialGrid());
-    }, []);
+export default class Board extends Component {
 
-  return (
-    <>
-    <Header></Header>
-    <div className="grid justify-items-center">
-      {grid.map((row, rowIdx) => {
-        // {console.log(row)}
-        return (
-          <div key={rowIdx} className="inline-flex">
-            {row.map((node, nodeIdx) => {
-              const {row, col} = node;
-              console.log(col)
-              return (
-                <Node
-                key={nodeIdx}
-                col={col}
-                row={row}
-                ></Node>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+  constructor() {
+    super();
+    this.state = {
+      grid: [],
+    };
+  }
+
+  componentDidMount() {
+    const grid = getInitialGrid();
+    this.setState({ grid });
+  }
+
+  render() {
+    const { grid } = this.state;
+
+    return (
+      <>
+        <Header></Header>
+        <div className="grid justify-items-center">
+          {grid.map((row, rowIdx) => {
+            // {console.log(row)}
+            return (
+              <div key={rowIdx} className="inline-flex">
+                {row.map((node, nodeIdx) => {
+                  const { row, col, isFinish, isStart } = node;
+                  console.log(isFinish)
+                  return (
+                    <Node
+                      key={nodeIdx}
+                      col={col}
+                      row={row}
+                      isFinish={isFinish}
+                      isStart={isStart}
+                    ></Node>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
       </>
-  );
+    );
+  }
 }
 
 
@@ -54,10 +72,8 @@ const createNode = (col, row) => {
   return {
     col,
     row,
+    isStart: row === START_NODE_ROW && col === START_NODE_COL,
+    isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
     previousNode: null,
   };
 };
-
-
-
-export default Board
