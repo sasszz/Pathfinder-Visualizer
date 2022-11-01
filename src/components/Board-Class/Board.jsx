@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 
   // CHANGE START
   document.onmouseover = function(e) {
-    // console.log(e.target.id);
+  // console.log(e.target.id);
 }
 
   document.onmousedown = (e) => {
@@ -17,10 +17,11 @@ import Header from '../Header/Header';
         e.target.className = "node node-start"
         let id = e.target.id
         let coordinates = id.split("-");
-        let r = parseInt(coordinates[0]);
-        let c = parseInt(coordinates[1]);
-        console.log(r, c)
-        return r, c;
+        let sr = parseInt(coordinates[0]);
+        let sc = parseInt(coordinates[1]);
+        console.log(sr, sc)
+        // set state for sr/sc
+        return sr, sc;
       }
     }
     if (e.target.className === "node node-finish") {
@@ -30,10 +31,12 @@ import Header from '../Header/Header';
         e.target.className = "node node-finish"
         let id = e.target.id
         let coordinates = id.split("-");
-        let r = parseInt(coordinates[0]);
-        let c = parseInt(coordinates[1]);
-        console.log(r, c)
-        return r, c;
+        let fr = parseInt(coordinates[0]);
+        let fc = parseInt(coordinates[1]);
+        console.log(fr, fc)
+        // set state for fr/fc
+        // get initial grid - after?
+        return fr, fc;
       }
     }
   }
@@ -48,7 +51,7 @@ export default class Board extends Component {
   constructor() {
     super();
     this.state = {
-      grid: [],
+      grid: []
     };
   }
 
@@ -65,7 +68,6 @@ export default class Board extends Component {
         <Header></Header>
         <div className="grid justify-items-center">
           {grid.map((row, rowIdx) => {
-            // {console.log(row)}
             return (
               <div key={rowIdx} className="inline-flex">
                 {row.map((node, nodeIdx) => {
@@ -90,7 +92,6 @@ export default class Board extends Component {
   }
 }
 
-
 const getInitialGrid = () => {
   const grid1 = [];
   for (let row = 0; row < 30; row++) {
@@ -100,7 +101,6 @@ const getInitialGrid = () => {
     }
     grid1.push(currentRow);
   }
-  // console.log(grid1)
   return grid1;
 }
 

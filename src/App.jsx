@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Board from './components/Board/Board';
+import Board from './components/Board-Functional/Board';
 
 function App() {
   return (
